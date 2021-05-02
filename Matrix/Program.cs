@@ -82,14 +82,14 @@ namespace Matrix
                             for (i = 0; i < row1; i++)
                                 for (j = 0; j < column1; j++)
                                     c[i, j] = a[i, j] + b[i, j];
-                            Console.Write("\nThe Addition of two matrix is : \n");
+                            Console.WriteLine("The Addition of two matrix is : ");
                             for (i = 0; i < row2; i++)
                             {
                                 Console.Write("\n");
                                 for (j = 0; j < column2; j++)
                                     Console.Write("{0}\t", c[i, j]);
                             }
-                            Console.Write("\n\n");
+                  
                         }
                         break;
 
@@ -97,8 +97,8 @@ namespace Matrix
 
                         if (column1 != row2)
                         {
-                            Console.Write("Mutiplication of Matrix is not possible.");
-                            Console.Write("\nColumn of first matrix and row of second matrix must be same.");
+                            Console.WriteLine("Mutiplication of Matrix is not possible.");
+                            Console.WriteLine("Column of first matrix and row of second matrix must be same.");
                         }
                         else
                         {
@@ -116,7 +116,7 @@ namespace Matrix
                                     c[i, j] = sum;
                                 }
                             }
-                            Console.Write("\nThe multiplication of two matrix is : \n");
+                            Console.WriteLine("The multiplication of two matrix is : ");
                             for (i = 0; i < row1; i++)
                             {
                                 Console.Write("\n");
@@ -125,7 +125,7 @@ namespace Matrix
                                     Console.Write("{0}\t", c[i, j]);
                                 }
                             }
-                            Console.Write("\n\n");
+                          
                         }
                         break;
 
@@ -133,8 +133,8 @@ namespace Matrix
                     case 3:
                         if (row1 != column1 && row2 != column2)
                         {
-                            Console.Write("Addition of Matrix is not possible.");
-                            Console.Write("\n Size of Rows and columns must be same.");
+                            Console.WriteLine("Subtraction of Matrix is not possible.");
+                            Console.WriteLine("Size of Rows and columns must be same.");
                         }
                         else
                         {
@@ -142,14 +142,14 @@ namespace Matrix
                             for (i = 0; i < column1; i++)
                                 for (j = 0; j < row1; j++)
                                     c[i, j] = a[i, j] - b[i, j];
-                            Console.Write("\nThe Subtraction of two matrix is : \n");
+                            Console.WriteLine("The Subtraction of two matrix is : ");
                             for (i = 0; i < column2; i++)
                             {
                                 Console.Write("\n");
                                 for (j = 0; j < row2; j++)
                                     Console.Write("{0}\t", c[i, j]);
                             }
-                            Console.WriteLine("");
+                           
                         }
                         break;
                     default:
