@@ -1,7 +1,0 @@
-C:\Users\Haripriya Manne\source\repos\Library Management System\Practise\bin\Debug\Practise.exe.config
-C:\Users\Haripriya Manne\source\repos\Library Management System\Practise\bin\Debug\Practise.exe
-C:\Users\Haripriya Manne\source\repos\Library Management System\Practise\bin\Debug\Practise.pdb
-C:\Users\Haripriya Manne\source\repos\Library Management System\Practise\obj\Debug\Practise.csprojAssemblyReference.cache
-C:\Users\Haripriya Manne\source\repos\Library Management System\Practise\obj\Debug\Practise.csproj.CoreCompileInputs.cache
-C:\Users\Haripriya Manne\source\repos\Library Management System\Practise\obj\Debug\Practise.exe
-C:\Users\Haripriya Manne\source\repos\Library Management System\Practise\obj\Debug\Practise.pdb
