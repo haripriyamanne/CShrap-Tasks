@@ -13,9 +13,9 @@ namespace Matrix
             int row1, column1, row2, column2, i, j, k, sum = 0;
             string userChoice;
 
-            int[,] a = new int[50, 50];
-            int[,] b = new int[50, 50];
-            int[,] c = new int[50, 50];
+            int[,] a = new int[10, 10];
+            int[,] b = new int[10, 10];
+            int[,] c = new int[10, 10];
 
             Console.WriteLine("Enter the Size Rows and Columns of 1st Matrix:");
             Console.WriteLine("Enter the Row Size: ");
@@ -153,7 +153,7 @@ namespace Matrix
                         }
                         break;
                     default:
-                        Console.WriteLine("your choice was invaild {0}", userInput);
+                        Console.WriteLine("your choice was invaild {0} Enter Valid Operation", userInput);
                         break;
                 }
                 do

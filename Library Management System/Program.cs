@@ -6,151 +6,164 @@ using System.Threading.Tasks;
 
 namespace Library_Management_System
 {
+    class Book
+    {
+        public int bookId;
+        public string bookName;
+        public int bookPrice;
+        public int bookCount;
+        public int x;
+    }
+    class BorrowDetails
+    {
+        public int userId;
+        public string userName;
+        public string userAddress;
+        public int borrowBookId;
+        public DateTime borrowDate;
+        public int borrowCount;
+    }
+
     class Program
     {
-        public static void Main()
+        static List<Book> bookList = new List<Book>();
+        static List<BorrowDetails> borrowList = new List<BorrowDetails>();
+        static Book book = new Book();
+        static BorrowDetails borrow = new BorrowDetails();
+        public static string userChoice;
+        static void Main(string[] args)
         {
-            int i, j, k, row1, column1, row2, column2, sum = 0;
 
-            int[,] a = new int[50, 50];
-            int[,] b = new int[50, 50];
-            int[,] c = new int[50, 50];
-
-            Console.WriteLine("Enter the Size Rows and Columns of 1st Matrix:");
-            Console.WriteLine("Enter the Row Size: ");
-            row1 = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter the Column Size: ");
-            column1 = int.Parse(Console.ReadLine());
-
-            Console.WriteLine("Enter the Size of Rows and Columns of 2nd Matrix:");
-            Console.WriteLine("Enter the Row Size: ");
-            row2 = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter the Column Size: ");
-            column2 = int.Parse(Console.ReadLine());
-
-
-            Console.Write("Enter the Elements of 1st matrix :\n");
-                for (i = 0; i < row1; i++)
-                {
-                    for (j = 0; j < column1; j++)
-                    {
-                        Console.Write("Number - [{0}],[{1}] : ", i, j);
-                        a[i, j] = Convert.ToInt32(Console.ReadLine());
-                    }
-                }
-                Console.Write("Enter the Elements of 2nd matrix :\n");
-                for (i = 0; i < row2; i++)
-                {
-                    for (j = 0; j < column2; j++)
-                    {
-                        Console.Write("Numbert - [{0}],[{1}] : ", i, j);
-                        b[i, j] = Convert.ToInt32(Console.ReadLine());
-                    }
-                }
-                Console.Write("\nThe 1st matrix Elements are :\n");
-                for (i = 0; i < row1; i++)
-                {
-                    Console.Write("\n");
-                    for (j = 0; j < column1; j++)
-                        Console.Write("{0}\t", a[i, j]);
-                }
-
-                Console.Write("\nThe 2nd matrix Elements are :\n");
-                for (i = 0; i < row2; i++)
-                {
-                    Console.Write("\n");
-                    for (j = 0; j < column2; j++)
-                        Console.Write("{0}\t", b[i, j]);
-                }
-
-                Console.WriteLine("\nselect Which Operation to Perform 1-Addition 2-Multiplication 3-Subtraction");
+            Console.WriteLine(" Welcome to Library Management System\n");
+            do
+            {
+                Console.WriteLine("1.Add a book  \n 2. Add Student \n 3. Assign a Book \n 4.Return the Book \n 5. Display Book List \n 6. Display Students List");
                 int userInput = int.Parse(Console.ReadLine());
+
                 switch (userInput)
                 {
                     case 1:
-                    if(row1 !=column1  && row2 !=column2 )
-                    {
-                        Console.WriteLine("Addition of Matrix is not possible.");
-                        Console.WriteLine("Size of Rows and columns must be same.");
-                    }
-                    else
-                    {
-                        /* sum of the Matrix */
-                        for (i = 0; i < row1; i++)
-                            for (j = 0; j < column1; j++)
-                                c[i, j] = a[i, j] + b[i, j];
-                        Console.Write("\nThe Addition of two matrix is : \n");
-                        for (i = 0; i < row2; i++)
-                        {
-                            Console.Write("\n");
-                            for (j = 0; j < column2; j++)
-                                Console.Write("{0}\t", c[i, j]);
-                        }
-                        Console.Write("\n\n");
-                    }
+                     
+                        Console.WriteLine("Book Id:{0}", book.bookId = bookList.Count + 1);
+                        Console.Write("Book Name:");
+                        book.bookName = Console.ReadLine();
+                        Console.Write("Book Price:");
+                        book.bookPrice = int.Parse(Console.ReadLine());
+                        Console.Write("Number of Books:");
+                        book.x = book.bookCount = int.Parse(Console.ReadLine());
+                        bookList.Add(book);
+                        break;
+                    case 2:
+                    
+                        Console.WriteLine("User id : {0}", (borrow.userId = borrowList.Count + 1));
+                        Console.Write("Name :");
+                        borrow.userName = Console.ReadLine();
+                        Console.Write("Address :");
+                        borrow.userAddress = Console.ReadLine();
                         break;
 
-                    case 2:
+                    case 3:
+                        Console.WriteLine("Enter Student Id ");
+                        borrow.userId = int.Parse(Console.ReadLine());
+                        Console.Write("Book id :");
+                        borrow.borrowBookId = int.Parse(Console.ReadLine());
+                        Console.Write("Number of Books : ");
+                        borrow.borrowCount = int.Parse(Console.ReadLine());
+                        
+                        borrow.borrowDate = DateTime.Now;
+                        Console.WriteLine("Assigned a book to student Id {0}",borrow.userId);
+                        Console.WriteLine("Date - {0} and Time - {1}", borrow.borrowDate.ToShortDateString(), borrow.borrowDate.ToShortTimeString());
 
-                        if (column1 != row2)
+                        if (bookList.Exists(x => x.bookId == borrow.borrowBookId))
                         {
-                            Console.Write("Mutiplication of Matrix is not possible.");
-                            Console.Write("\nColumn of first matrix and row of second matrix must be same.");
+                            foreach (Book searchId in bookList)
+                            {
+                                if (searchId.bookCount >= searchId.bookCount - borrow.borrowCount && searchId.bookCount - borrow.borrowCount >= 0)
+                                {
+                                    if (searchId.bookId == borrow.borrowBookId)
+                                    {
+                                        searchId.bookCount = searchId.bookCount - borrow.borrowCount;
+                                        break;
+                                    }
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Only {0} books are found", searchId.bookCount);
+                                    break;
+                                }
+                            }
                         }
                         else
                         {
-                        // Multiplication of Matix
-                            for (i = 0; i < row1; i++)
-                                for (j = 0; j < column2; j++)
-                                    c[i, j] = 0;
-                            for (i = 0; i < row1; i++)    //row of first matrix
-                            {
-                                for (j = 0; j < column2; j++)    //column of second matrix
-                                {
-                                    sum = 0;
-                                    for (k = 0; k < column1; k++)
-                                        sum = sum + a[i, k] * b[k, j];
-                                    c[i, j] = sum;
-                                }
-                            }
-                            Console.Write("\nThe multiplication of two matrix is : \n");
-                            for (i = 0; i < row1; i++)
-                            {
-                                Console.Write("\n");
-                                for (j = 0; j < column2; j++)
-                                {
-                                    Console.Write("{0}\t", c[i, j]);
-                                }
-                            }
-                            Console.Write("\n\n");
+                            Console.WriteLine("Book id {0} not found", borrow.borrowBookId);
                         }
+                        borrowList.Add(borrow);
                         break;
-                   
 
-                    case 3:
-                    if (row1 != column1 && row2 != column2)
-                    {
-                        Console.Write("Addition of Matrix is not possible.");
-                        Console.Write("\n Size of Rows and columns must be same.");
-                    }
-                    else
-                    {
-                        /* Subtraction of the Matrix */
-                        for (i = 0; i < column1; i++)
-                            for (j = 0; j < row1; j++)
-                                c[i, j] = a[i, j] - b[i, j];
-                        Console.Write("\nThe Subtraction of two matrix is : \n");
-                        for (i = 0; i < column2; i++)
+                    case 4:
+                      
+                        Console.WriteLine("Enter following details :");
+
+                        Console.Write("Book id : ");
+                        int returnId = int.Parse(Console.ReadLine());
+
+                        Console.Write("Number of Books:");
+                        int returnCount = int.Parse(Console.ReadLine());
+
+                        if (bookList.Exists(y => y.bookId == returnId))
                         {
-                            Console.Write("\n");
-                            for (j = 0; j < row2; j++)
-                                Console.Write("{0}\t", c[i, j]);
+                            foreach (Book addReturnBookCount in bookList)
+                            {
+                                if (addReturnBookCount.x >= returnCount + addReturnBookCount.bookCount)
+                                {
+                                    if (addReturnBookCount.bookId == returnId)
+                                    {
+                                        addReturnBookCount.bookCount = addReturnBookCount.bookCount + returnCount;
+                                        break;
+                                    }
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Book already Returned");
+                                    break;
+                                }
+                            }
                         }
-                        Console.WriteLine("");
-                    }
+                        else
+                        {
+                            Console.WriteLine("Book id {0} not found", returnId);
+                        }
+
                         break;
-            }
+
+                    case 5:
+                        Console.WriteLine("the list of books in library:");
+                        foreach (Book b in bookList )
+                        {
+                            Console.WriteLine("Book Title: {0}", b.bookName);
+                            Console.WriteLine("Book Id: {0}", b.bookId);
+                           
+                        }
+                        break;
+
+
+                    default:
+                        Console.WriteLine("your choice was invaild {0} Enter Valid Operation", userInput);
+                        break;
+
+                }
+                do
+                {
+                    Console.WriteLine("Do you want to Continue YES or NO");
+                    userChoice = Console.ReadLine().ToLower();
+                    if (userChoice != "yes" && userChoice != "no")
+                    {
+                        Console.WriteLine("Please enter vaild choice");
+                    }
+                } while (userChoice != "yes" && userChoice != "no");
+            } while (userChoice == "yes");
         }
     }
-}
+    
 
+}
