@@ -66,12 +66,12 @@ namespace Matrix
 
             do
             {
-                Console.WriteLine("\nselect Which Operation to Perform 1-Addition 2-Multiplication 3-Subtraction");
+                Console.WriteLine("\nselect Which Operation to Perform 1-Addition 2-Multiplication 3-Subtraction 4- Division");
                 int userInput = int.Parse(Console.ReadLine());
                 switch (userInput)
                 {
                     case 1:
-                        if (row1 != column1 && row2 != column2)
+                        if (row1 != column1 && row2 != column2 && row1 !=row2 && column1 !=column2)
                         {
                             Console.WriteLine("Addition of Matrix is not possible.");
                             Console.WriteLine("Size of Rows and columns must be same.");
@@ -152,13 +152,36 @@ namespace Matrix
                            
                         }
                         break;
+
+                    case 4:
+                        if (row1 != column1 && row2 != column2)
+                        {
+                            Console.WriteLine("Division of Matrix is not possible.");
+                            Console.WriteLine("Size of Rows and columns must be same.");
+                        }
+                        else
+                        {
+                            /* Division of the Matrix */
+                            for (i = 0; i < column1; i++)
+                                for (j = 0; j < row1; j++)
+                                    c[i, j] = a[i, j] / b[i, j];
+                            Console.WriteLine("The Division of two matrix is : ");
+                            for (i = 0; i < column2; i++)
+                            {
+                                Console.Write("\n");
+                                for (j = 0; j < row2; j++)
+                                    Console.Write("{0}\t", c[i, j]);
+                            }
+
+                        }
+                        break;
                     default:
                         Console.WriteLine("your choice was invaild {0} Enter Valid Operation", userInput);
                         break;
                 }
                 do
                 {
-                    Console.WriteLine("Do you want to Perform another Operation YES or NO");
+                    Console.WriteLine("\nDo you want to Perform another Operation YES or NO");
                     userChoice = Console.ReadLine().ToLower();
                     if (userChoice != "yes" && userChoice != "no")
                     {
